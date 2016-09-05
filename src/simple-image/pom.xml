@@ -1,31 +1,37 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>com.lee.tools</groupId>
     <artifactId>vc-simple-image</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    
+
     <name>Simple Image Verification Code</name>
     <description>Implementation of Simple Image Verification Code</description>
-    
+
     <properties>
+        <github.owner>jimmyblylee</github.owner>
+        <github.repository>maven-repo</github.repository>
+        <github.this.repository>verification-code-generator</github.this.repository>
+        
         <junit.version>4.11</junit.version>
         <!-- plugins versions and settings -->
-        <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
-        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-compiler-plugin.source>1.7</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>1.7</maven-compiler-plugin.target>
-        <maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version>
-        <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
-        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-surefire-plugin.skip>false</maven-surefire-plugin.skip>
-        
+        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <site-maven-plugin.version>0.12</site-maven-plugin.version>
+
         <encoding>UTF-8</encoding>
     </properties>
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -34,14 +40,22 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+        
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+    
     <build>
         <finalName>${project.artifactId}</finalName>
 
         <!-- plugins -->
         <plugins>
-            <!-- The Source Plugin creates a jar archive of the source 
-                files of the current project. The jar file is, by default, created in the 
-                project's target directory. ref: http://maven.apache.org/plugins/maven-source-plugin/ -->
+            <!-- The Source Plugin creates a jar archive of the source files of the current project. The jar file is, by default, created in the project's target 
+                directory. ref: http://maven.apache.org/plugins/maven-source-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -56,8 +70,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- The Javadoc Plugin uses the Javadoc tool to generate 
-                javadocs for the specified project. ref: http://maven.apache.org/plugins/maven-javadoc-plugin/ -->
+            <!-- The Javadoc Plugin uses the Javadoc tool to generate javadocs for the specified project. ref: http://maven.apache.org/plugins/maven-javadoc-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -78,8 +91,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- The Resources Plugin handles the copying of project 
-                resources to the output directory. ref: http://maven.apache.org/plugins/maven-resources-plugin/ -->
+            <!-- The Resources Plugin handles the copying of project resources to the output directory. ref: http://maven.apache.org/plugins/maven-resources-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -88,8 +100,7 @@
                     <encoding>${encoding}</encoding>
                 </configuration>
             </plugin>
-            <!-- The Compiler Plugin is used to compile the sources of 
-                your project. ref: http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+            <!-- The Compiler Plugin is used to compile the sources of your project. ref: http://maven.apache.org/plugins/maven-compiler-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -100,8 +111,7 @@
                     <encoding>${encoding}</encoding>
                 </configuration>
             </plugin>
-            <!-- The Surefire Plugin is used during the test phase of 
-                the build lifecycle to execute the unit tests of an application. ref: http://maven.apache.org/surefire/maven-surefire-plugin/ -->
+            <!-- The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application. ref: http://maven.apache.org/surefire/maven-surefire-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -111,8 +121,7 @@
                     <skip>${maven-surefire-plugin.skip}</skip>
                 </configuration>
             </plugin>
-            <!-- The Surefire Plugin is used during the test phase of 
-                the build lifecycle to execute the unit tests of an application. ref: http://maven.apache.org/surefire/maven-surefire-plugin/ -->
+            <!-- The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application. ref: http://maven.apache.org/surefire/maven-surefire-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
@@ -121,12 +130,8 @@
                     <skipSurefireReport>${maven-surefire-plugin.skip}</skipSurefireReport>
                 </configuration>
             </plugin>
-            <!--
-                The Assembly Plugin for Maven is primarily intended to allow users to 
-                aggregate the project output along with its dependencies, modules, site documentation, 
-                and other files into a single distributable archive.
-                ref: http://maven.apache.org/plugins/maven-assembly-plugin/
-            -->
+            <!-- The Assembly Plugin for Maven is primarily intended to allow users to aggregate the project output along with its dependencies, modules, site documentation, 
+                and other files into a single distributable archive. ref: http://maven.apache.org/plugins/maven-assembly-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -146,10 +151,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
-                This plugin provides the capability to build jars.
-                ref: http://maven.apache.org/plugins/maven-jar-plugin/
-            -->
+            <!-- This plugin provides the capability to build jars. ref: http://maven.apache.org/plugins/maven-jar-plugin/ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -163,6 +165,56 @@
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <!-- The deploy plugin is primarily used during the deploy phase, to add your artifact(s) to a remote repository for sharing with other developers and 
+                projects. ref: http://maven.apache.org/plugins/maven-deploy-plugin/ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <!-- https://github.com/github/maven-plugins -->
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>${site-maven-plugin.version}</version>
+                <configuration>
+                    <message>Maven artifacts for vc-simple-image with version ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <merge>true</merge>
+                    <branch>refs/heads/maven-repo</branch>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <repositoryOwner>${github.owner}</repositoryOwner>
+                    <server>github</server>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>this.repo</id>
+                        <configuration>
+                            <repositoryName>${github.this.repository}</repositoryName>
+                        </configuration>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                    <execution>
+                        <id>main.repo</id>
+                        <configuration>
+                            <repositoryName>${github.repository}</repositoryName>
+                        </configuration>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
