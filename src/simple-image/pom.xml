@@ -12,7 +12,6 @@
     <properties>
         <github.owner>jimmyblylee</github.owner>
         <github.repository>maven-repo</github.repository>
-        <github.this.repository>verification-code-generator</github.this.repository>
         
         <junit.version>4.11</junit.version>
         <!-- plugins versions and settings -->
@@ -194,16 +193,6 @@
                     <server>github</server>
                 </configuration>
                 <executions>
-                    <execution>
-                        <id>this.repo</id>
-                        <configuration>
-                            <repositoryName>${github.this.repository}</repositoryName>
-                        </configuration>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                        <phase>deploy</phase>
-                    </execution>
                     <execution>
                         <id>main.repo</id>
                         <configuration>
