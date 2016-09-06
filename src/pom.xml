@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>com.lee.tools</groupId>
-    <artifactId>verification-code-modules</artifactId>
+    <artifactId>verification-code-aggregator</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     
     <name>Verification Code</name>
-    <description>Verification Code Modules</description>
+    <description>Verification Code Aggregator</description>
     
     <modules>
         <module>simple-image</module>

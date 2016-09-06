@@ -4,8 +4,8 @@ call msg info "[INFO] Installing verification-code-generator" & echo.
 
 set BASEDIR=%~dp0
 
-pushd %BASEDIR%\..\src\simple-image
-  call mvn clean deploy -DperformTest=true -DperformSource=true -DperformDeploy=true
+pushd %BASEDIR%\..\src
+  call mvn clean install -DperformTest=true -DperformSource=true
 popd
 
 call beep.bat
@@ -19,4 +19,4 @@ timeout /t 1 >NUL
 call beep.bat
 timeout /t 1 >NUL 
 
-pause
+timeout /t 10 >NUL 
