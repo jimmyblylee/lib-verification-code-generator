@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.lee</groupId>
         <artifactId>platform</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0.RELEASE</version>
         <relativePath/>
     </parent>
     
     <groupId>com.lee.tools</groupId>
     <artifactId>vc-simple-image</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.RELEASE</version>
     <packaging>jar</packaging>
 
     <name>Simple Image Verification Code</name>
